@@ -1,4 +1,5 @@
-﻿using System;
+﻿using ModbusTCP;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -8,6 +9,9 @@ namespace ModbusTester
 {
     public static class Data
     {
+        public static Master MB_Master;
+        
+        // New objects
         public enum DataFormat { Bits, Bytes, Words }
         public static MainWindow Current;
         public static string IPAddress = "10.0.0.14";

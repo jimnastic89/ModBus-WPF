@@ -1,4 +1,5 @@
 ﻿using Modbus;
+using ModbusTCP;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -11,6 +12,7 @@ namespace ModbusTester
 {
     public partial class MainWindow : UserControl, INotifyPropertyChanged
     {
+        public Master MB_Master {  get => Data.MB_Master; set => SetValue(ref Data.MB_Master, value); }
         public string IPAddress { get => Data.IPAddress; set => SetValue(ref Data.IPAddress, value); }
         public string Unit { get => Data.Unit; set => SetValue(ref Data.Unit, value); }
         public string StartAddress { get => Data.StartAddress; set => SetValue(ref Data.StartAddress, value); }

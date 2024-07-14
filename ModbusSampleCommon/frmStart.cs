@@ -15,7 +15,7 @@ namespace Modbus
 {
     public class frmStart : Form
     {
-        private Master MBmaster;
+        //private Master MBmaster;
         private TextBox txtData;
         private Label labData;
         private byte[] data;
@@ -103,10 +103,10 @@ namespace Modbus
         // ------------------------------------------------------------------------
         private void frmStart_Closing(object sender, CancelEventArgs e)
         {
-            if (MBmaster != null)
+            if (Data.Current.MB_Master != null)
             {
-                MBmaster.Dispose();
-                MBmaster = null;
+                Data.Current.MB_Master.Dispose();
+                Data.Current.MB_Master = null;
             }
             Application.Exit();
         }
@@ -119,9 +119,9 @@ namespace Modbus
             try
             {
                 // Create new modbus master and add event functions
-                MBmaster = new Master(Data.IPAddress, 502, true);
-                MBmaster.OnResponseData += new Master.ResponseData(MBmaster_OnResponseData);
-                MBmaster.OnException += new Master.ExceptionData(MBmaster_OnException);
+                Data.Current.MB_Master = new Master(Data.IPAddress, 502, true);
+                Data.Current.MB_Master.OnResponseData += new Master.ResponseData(MBmaster_OnResponseData);
+                Data.Current.MB_Master.OnException += new Master.ExceptionData(MBmaster_OnException);
 
                 // Show additional fields, enable watchdog
                 Data.Current.IsConnected_bool = true;
@@ -142,7 +142,7 @@ namespace Modbus
             ushort StartAddress = ReadStartAdr();
             UInt16 Length = Convert.ToUInt16(Data.Size);
 
-            MBmaster.ReadCoils(ID, unit, StartAddress, Length);
+            Data.Current.MB_Master.ReadCoils(ID, unit, StartAddress, Length);
         }
 
         // ------------------------------------------------------------------------
@@ -155,7 +155,7 @@ namespace Modbus
             ushort StartAddress = ReadStartAdr();
             UInt16 Length = Convert.ToUInt16(Data.Size);
 
-            MBmaster.ReadDiscreteInputs(ID, unit, StartAddress, Length);
+            Data.Current.MB_Master.ReadDiscreteInputs(ID, unit, StartAddress, Length);
         }
 
         // ------------------------------------------------------------------------
@@ -168,7 +168,7 @@ namespace Modbus
             ushort StartAddress = ReadStartAdr();
             UInt16 Length = Convert.ToUInt16(Data.Size);
 
-            MBmaster.ReadHoldingRegister(ID, unit, StartAddress, Length);
+            Data.Current.MB_Master.ReadHoldingRegister(ID, unit, StartAddress, Length);
         }
 
         // ------------------------------------------------------------------------
@@ -181,7 +181,7 @@ namespace Modbus
             ushort StartAddress = ReadStartAdr();
             UInt16 Length = Convert.ToUInt16(Data.Size);
 
-            MBmaster.ReadInputRegister(ID, unit, StartAddress, Length);
+            Data.Current.MB_Master.ReadInputRegister(ID, unit, StartAddress, Length);
         }
 
         // ------------------------------------------------------------------------
@@ -195,7 +195,7 @@ namespace Modbus
             data = GetData(1);
             Data.Size = "1";
 
-            MBmaster.WriteSingleCoils(ID, unit, StartAddress, Convert.ToBoolean(data[0]));
+            Data.Current.MB_Master.WriteSingleCoils(ID, unit, StartAddress, Convert.ToBoolean(data[0]));
         }
 
         // ------------------------------------------------------------------------
@@ -209,7 +209,7 @@ namespace Modbus
             UInt16 Length = Convert.ToUInt16(Data.Size);
 
             data = GetData(Convert.ToUInt16(Data.Size));
-            MBmaster.WriteMultipleCoils(ID, unit, StartAddress, Length, data);
+            Data.Current.MB_Master.WriteMultipleCoils(ID, unit, StartAddress, Length, data);
         }
 
         // ------------------------------------------------------------------------
@@ -231,7 +231,7 @@ namespace Modbus
             Data.Size = "1";
             txtData.Text = data[0].ToString();
 
-            MBmaster.WriteSingleRegister(ID, unit, StartAddress, data);
+            Data.Current.MB_Master.WriteSingleRegister(ID, unit, StartAddress, data);
         }
 
         // ------------------------------------------------------------------------
@@ -244,7 +244,7 @@ namespace Modbus
             ushort StartAddress = ReadStartAdr();
 
             data = GetData(Convert.ToByte(Data.Size));
-            MBmaster.WriteMultipleRegister(ID, unit, StartAddress, data);
+            Data.Current.MB_Master.WriteMultipleRegister(ID, unit, StartAddress, data);
         }
 
         // ------------------------------------------------------------------------
