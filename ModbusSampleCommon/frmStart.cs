@@ -15,7 +15,6 @@ namespace Modbus
 {
     public class frmStart : Form
     {
-        private Label labData;
         private byte[] data;
         public static frmStart Current;
 
@@ -26,18 +25,6 @@ namespace Modbus
         {
             InitializeComponent();
             Current = this;
-        }
-
-        protected override void Dispose(bool disposing)
-        {
-            if (disposing)
-            {
-                if (components != null)
-                {
-                    components.Dispose();
-                }
-            }
-            base.Dispose(disposing);
         }
 
         #region Vom Windows Form-Designer generierter Code
