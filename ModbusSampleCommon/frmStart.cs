@@ -51,13 +51,11 @@ namespace Modbus
             this.AutoScaleBaseSize = new Size(5, 15);
             this.ClientSize = new Size(841, 471);
             this.Controls.Add(this.host);
-            //this.Controls.Add(this.Data_GroupBox);
             this.Font = new Font("Segoe UI", 8.25F, FontStyle.Regular, GraphicsUnit.Point, ((byte)(0)));
             this.Name = "frmStart";
             this.Text = "ModbusTCP Tester V1.3";
             this.Closing += new CancelEventHandler(this.frmStart_Closing);
             this.Load += new EventHandler(this.frmStart_Load);
-            //this.SizeChanged += new EventHandler(this.frmStart_Resize);
             this.ResumeLayout(false);
 
         }
@@ -80,7 +78,6 @@ namespace Modbus
         {
             // Set standard format byte, make some textboxes
             data = new byte[0];
-            //ResizeData();
         }
 
         // ------------------------------------------------------------------------
