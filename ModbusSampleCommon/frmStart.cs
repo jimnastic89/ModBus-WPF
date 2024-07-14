@@ -15,8 +15,6 @@ namespace Modbus
 {
     public class frmStart : Form
     {
-        //private Master MBmaster;
-        private TextBox txtData;
         private Label labData;
         private byte[] data;
         public static frmStart Current;
@@ -229,7 +227,6 @@ namespace Modbus
                 data = GetData(1);
 
             Data.Size = "1";
-            txtData.Text = data[0].ToString();
 
             Data.Current.MB_Master.WriteSingleRegister(ID, unit, StartAddress, data);
         }
