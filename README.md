@@ -4,7 +4,7 @@ Visual Studio modbusTCP class
 This class implements a Modbus TCP master driver. The code is written in C# but the DLL can 
 be used in any other language. 
 
-![Picture](https://github.com/stephanstricker/modbusTCP/blob/master/Screenshot.png)
+![Picture](Screenshot.png)
 
 ## It supports the following function codes:
 
